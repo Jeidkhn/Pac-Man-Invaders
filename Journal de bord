@@ -5,27 +5,32 @@
 
 * 1er RDV avec le mentor
 * Familiarisation avec l’éditeur de code _Pycharm_
-* 1ère idée de projet : Un Space Invaders dans l’univers Pac-Man et les décors asssociés, avec à la place des ennemis des fantômes et pour le héros un (vaisseau) Pac man.
+* 1ère idée de projet : Un Space Invaders dans l’univers Pac-Man et les décors asssociés, avec à la place des ennemis des fantômes et pour le joueur un (vaisseau) Pac man.
 
 #### 27 Juin 2025 :
 
 * 1er dépôt après réinitialisation du code de test
 * Installation de la bibliothèque _Pygame_
-* Compréhension d’un code d'exemple de _Pygame_, d’un cercle qui bouge
+* Incorporation d’un code d’exemple _Pygame_, d'un cercle qui bouge
 
 #### 28 Juin 2025 :
 
 * Ajout du journal de bord sur Github
 * Renvoi du projet au mentor
 
-# A faire
+#### 29 Juin 2025 :
+
+* Modification du déplacement du joueur
+*
+
+# Planification
 ---------
 
 #### Semaine du 30.06 - 06.07 :
 
-* Conception de la matrice formant l'écran
-* Conception d'une boule (Pac man) se déplacant de gauche à droite
-* Conception d'au moins un ennemi qui se déplace
+* Conception de la matrice formant les bordures de l'écran
+* Conception du joueur se déplacant de gauche à droite
+* Conception de Pac Man qui tire
 
 #### Semaine du 07.07 - 13.07 :
 
