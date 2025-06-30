@@ -1,11 +1,12 @@
 # Journal de bord
-----------------
+_________________
 
 #### 26 Juin 2025 :
 
 * 1er RDV avec le mentor
 * Familiarisation avec l’éditeur de code _Pycharm_
-* 1ère idée de projet : Un Space Invaders dans l’univers Pac-Man et les décors asssociés, avec à la place des ennemis des fantômes et pour le joueur un (vaisseau) Pac man.
+* 1ère idée de projet : Un Space Invaders dans l’univers Pac-Man et les décors asssociés, avec à la place des ennemis,
+des fantômes et pour le joueur, Pac man.
 
 #### 27 Juin 2025 :
 
@@ -23,8 +24,14 @@
 * Modification du déplacement du joueur
 * Adaptation de l'écran en format de jeu rétro
 
+#### 30 Juin 2025 :
+
+* Limitation du mouvement du joueur sur l’axe x : Difficultés à comprendre l’usage de min() et max() 
+pour limiter le déplacement du joueur, notamment pourquoi il fallait inclure _player_pos.x_ dans la comparaison.
+*
+
 # Planification
----------
+_______________
 
 #### Semaine du 30.06 - 06.07 :
 

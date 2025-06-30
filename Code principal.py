@@ -6,6 +6,7 @@ clock = pygame.time.Clock()
 running = True
 dt = 0
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 1.1)
+player_width = 40
 
 while running:
 
@@ -15,7 +16,7 @@ while running:
 
     screen.fill("blue")
 
-    pygame.draw.circle(screen, "yellow", player_pos, 40)
+    pygame.draw.circle(screen, "yellow", player_pos, player_width)
 
     keys = pygame.key.get_pressed()
 
@@ -23,6 +24,8 @@ while running:
         player_pos.x -= 600 * dt
     if keys[pygame.K_d]:
         player_pos.x += 600 * dt
+
+    player_pos.x = max(player_width, min(960-player_width, player_pos.x))
 
     pygame.display.flip()
 
