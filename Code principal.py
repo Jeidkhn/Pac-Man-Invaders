@@ -37,6 +37,10 @@ while running == True:  # Tant que le jeu tourne, la variable est vrai
         if bullet_is_moving == False:
             bullet_pos.x += 600 * dt
 
+    if bullet_pos.y <= 0:       # Si le tir dépasse l'écran en y, le tir revient à la position du joueur
+        bullet_pos = player_pos.copy()
+        bullet_is_moving = False
+
     player_pos.x = max(player_width, min(960 - player_width, player_pos.x))   # Limite de déplacement du joueur en x
     bullet_pos.x = max(player_width, min(960 - player_width, bullet_pos.x))    # Limite de déplacement du tir en x
     pygame.display.flip()       # Rafraîchissement de l'image
