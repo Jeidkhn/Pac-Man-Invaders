@@ -7,8 +7,8 @@ Les ennemis ne meurent pas mais augmentent le score quand ils sont touchés. Ils
 Des obstacles se situent entre Pac-Man et les fantômes afin de se protéger des tirs.
 Le jeu s’intensifie progressivement : la vitesse des ennemis et la fréquence des tirs augmentent, jusqu’à un palier.
 Un bonus spécial circulera en haut de l’écran : s’il est atteint par un tir, Pac-Man obtient un multiplicateur de score temporaire (*n).
-Le score s’affiche, un son est joué pour chaque tir et chaque collision. Un bouton permet de rejouer à la fin. Un mode emploi avec les commandes sera affiché au début et le but du jeu avec 
-éventuellement les précédents meilleurs scores._
+Le score s’affiche, un son est joué pour chaque tir et chaque collision. Un bouton permet de rejouer à la fin. Un mode d'emploi 
+avec les commandes sera affiché au début et le but du jeu avec éventuellement les précédents meilleurs scores._
 
 # Journal de bord
 _________________
@@ -107,7 +107,10 @@ le code plus tard pour qu’il soit plus compact, car il est actuellement quatre
 à modifier si je veux ajouter un nouveau fantôme. Le problème qui m’a bloqué venait d’une coordonnée incorrecte 
 assignée à un des coins du rectangle, ce que je n’ai remarqué qu’au bout de trois jours.
 
+#### 09 Juillet 2025 : 
 
+* Collisions avec les ennemis et le tir : J'ai crée des intervalles en x et y délimitant le rectangle formant le fantôme
+en fonction de si le tir passe à travers cette intervalle et s'il y passe il retourne à la position du joueur
 
 # Planification
 _______________
@@ -123,16 +126,15 @@ _______________
 
 #### Semaine du 07.07 - 13.07 :
 
-* Ajouter le tir du joueur avec nouvelle limite (2 tirs par seconde)
-* Ajouter les collisions entre tir et fantôme
-* Faire augmenter le score quand un fantôme est touché
-* Afficher le score à l’écran
+* Ajouter les collisions entre tir et fantôme FAIT
+* Faire augmenter le score quand un fantôme est touché et l'afficher 
 * Créer un bonus qui se déplace dans un mini-circuit en haut de l’écran
 * Gérer la collision entre Pac-Man et le bonus
 
 #### Semaine du 14.07 - 20.07 :
 
-*
+* Ajouter le tir du joueur avec nouvelle limite (2 tirs par seconde)
+* 
 
 #### Semaine du 21.07 - 27.07 :
 
