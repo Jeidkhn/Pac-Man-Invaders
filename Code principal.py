@@ -10,20 +10,23 @@ ghost2_pos = pygame.Vector2(550, 100)
 ghost3_pos = pygame.Vector2(780, 290)
 ghost4_pos = pygame.Vector2(360, 290)
 player_pos = pygame.Vector2(960 / 2, 655)
-ghost_dimension = 50, 60
-ghost_area = pygame.Vector2(130, 100)         # Temporaire !
-player_width = 40
 bullet_pos = pygame.Vector2(960 / 2, 655)
-bullet_width = 5
-bullet_is_moving = False
 top_left_pos = pygame.Vector2(130, 100)
 bottom_left_pos = pygame.Vector2(130, 290)
 bottom_right_pos = pygame.Vector2(780, 290)
 top_right_pos = pygame.Vector2(780, 100)
+ghost_area = pygame.Vector2(130, 100)         # Temporaire !
+ghost_dimension = 50, 60
+player_width = 40
+bullet_width = 5
+bullet_is_moving = False
 ghost1_direction = "right"
 ghost2_direction = "right"
 ghost3_direction = "left"
 ghost4_direction = "left"
+score = 0
+font_dimension = 50
+font = pygame.font.SysFont(None, font_dimension)
 
 while running == True:  # Tant que le jeu tourne, la variable est vrai
 
@@ -39,6 +42,9 @@ while running == True:  # Tant que le jeu tourne, la variable est vrai
     pygame.draw.rect(screen, "orange", (*ghost4_pos, *ghost_dimension))
     pygame.draw.circle(screen, "yellow", player_pos, player_width)      # Dessin du joueur
     pygame.draw.circle(screen, "purple", bullet_pos, bullet_width)      # Dessin du tir
+
+    score_text = font.render(f"SCORE: {score}", True, ("black"))        # Dessin du score
+    screen.blit(score_text, (30, 30))
 
     if bullet_is_moving == True:    # Si la variable de déplacement du tir est vrai, le tir monte
         bullet_pos.y -= 800 * dt
@@ -66,21 +72,25 @@ while running == True:  # Tant que le jeu tourne, la variable est vrai
     ghost1_pos.y <= bullet_pos.y <= ghost1_pos.y + 60):
         bullet_pos = player_pos.copy()
         bullet_is_moving = False
+        score += 5
 
     if (ghost2_pos.x <= bullet_pos.x <= ghost2_pos.x + 50 and       # Collision entre le 2ème fantôme et le tir
             ghost2_pos.y <= bullet_pos.y <= ghost2_pos.y + 60):
         bullet_pos = player_pos.copy()
         bullet_is_moving = False
+        score += 5
 
     if (ghost3_pos.x <= bullet_pos.x <= ghost3_pos.x + 50 and       # Collision entre le 3ème fantôme et le tir
             ghost3_pos.y <= bullet_pos.y <= ghost3_pos.y + 60):
         bullet_pos = player_pos.copy()
         bullet_is_moving = False
+        score += 5
 
     if (ghost4_pos.x <= bullet_pos.x <= ghost4_pos.x + 50 and       # Collision entre le 4ème fantôme et le tira
             ghost4_pos.y <= bullet_pos.y <= ghost4_pos.y + 60):
         bullet_pos = player_pos.copy()
         bullet_is_moving = False
+        score += 5
 
     if ghost1_direction == "right":         # Déplacement en boucle du 1er fantôme
         ghost1_pos.y = top_left_pos.y

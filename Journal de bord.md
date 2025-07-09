@@ -109,8 +109,17 @@ assignée à un des coins du rectangle, ce que je n’ai remarqué qu’au bout 
 
 #### 09 Juillet 2025 : 
 
-* Collisions avec les ennemis et le tir : J'ai crée des intervalles en x et y délimitant le rectangle formant le fantôme
-en fonction de si le tir passe à travers cette intervalle et s'il y passe il retourne à la position du joueur
+* Collisions avec les ennemis et le tir : J'ai crée des intervalles en x et y délimitant le rectangle formant les ennemis 
+en fonction de si le tir passe à travers cette intervalle et s'il y passe il retourne à la position du joueur.
+
+#### 10 Juillet 2025
+
+* Implémentation du système de score : J'ai réussi à afficher le score à l'écran, mais j'ai eu du mal à comprendre les 
+f-strings pour formater le texte. J'ai appris qu'elles permettent d'insérer des valeurs de variables directement dans une 
+chaîne de caractères avec des informations dynamiques qui changent. J'ai également découvert que le 
+`True` dans `font.render(f"SCORE: {score}", True, (255, 255, 255))` est un booléen qui active _l'anti-aliasing_, 
+de ce que j'ai compris ça rend le texte plus lisible.
+* 
 
 # Planification
 _______________
@@ -127,7 +136,9 @@ _______________
 #### Semaine du 07.07 - 13.07 :
 
 * Ajouter les collisions entre tir et fantôme FAIT
-* Faire augmenter le score quand un fantôme est touché et l'afficher 
+* Faire augmenter le score quand un fantôme est touché et l'afficher FAIT
+* Regrouper sous formes de listes ou de tableaux 
+* Faire tirer les ennemis et faire perdre le joueur
 * Créer un bonus qui se déplace dans un mini-circuit en haut de l’écran
 * Gérer la collision entre Pac-Man et le bonus
 
