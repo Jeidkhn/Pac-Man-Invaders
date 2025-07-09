@@ -39,7 +39,7 @@ des fantômes et pour le joueur, Pac man.
 #### 30 Juin 2025 :
 
 * Limitation du mouvement du joueur sur l'axe x : Difficultés à comprendre l’usage de min() et max() 
-pour limiter le déplacement du joueur, notamment pourquoi il fallait inclure _player_pos.x_ dans la comparaison.
+pour limiter le déplacement du joueur, notamment pourquoi il fallait inclure `player_pos.x` dans la comparaison.
 * Tir du joueur : Difficultés à comprendre pourquoi les deux éléments du jeu bougent en même temps, donc comprendre 
 la différence entre la copie d'un scalaire et la référence d'un objet. 
 Notamment la différence entre ces lignes (faux): 
@@ -96,9 +96,18 @@ se trouvent en -x/y qu'en +x/y par rapport au point de position. Concernant la p
 en calculant le perimètre de la surface où se trouve les fantômes en veillant à prendre la largeur/hauteur 
 des ennemis en compte. Afin qu'ils soient inscrits dans le surface rectangulaire.
 
-#### 05 Juillet 2025 :
+#### 06-09 Juillet 2025 :
 
-* 
+* Déplacement des 4 ennemis en boucle : J’ai enfin réussi à faire fonctionner le déplacement en boucle des ennemis. 
+Pour cela, j’ai d’abord défini les positions précises des quatre coins du rectangle noir 
+qui délimite la surface de déplacement des fantômes. J’ai commencé par faire tous les tests avec un seul fantôme 
+pour observer le comportement plus facilement, puis j’ai copié le même fonctionnement pour les autres. Le déplacement 
+se fait désormais en boucle dans le sens horaire, en passant par les quatre coins du rectangle. Je prévois d’optimiser 
+le code plus tard pour qu’il soit plus compact, car il est actuellement quatre fois trop long et peu pratique 
+à modifier si je veux ajouter un nouveau fantôme. Le problème qui m’a bloqué venait d’une coordonnée incorrecte 
+assignée à un des coins du rectangle, ce que je n’ai remarqué qu’au bout de trois jours.
+
+
 
 # Planification
 _______________
@@ -110,7 +119,7 @@ _______________
 * Conception de Pac Man qui tire  FAIT
 * Conception du retour du tir après être sorti de l'écran pour pouvoir tirer plusieurs fois  FAIT
 * Créer et afficher les 4 fantômes ennemis  FAIT
-* Faire un déplacement en boucle de ces ennemis
+* Faire un déplacement en boucle de ces ennemis FAIT
 
 #### Semaine du 07.07 - 13.07 :
 
