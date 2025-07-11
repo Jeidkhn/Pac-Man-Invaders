@@ -9,8 +9,8 @@ ghost1_pos = pygame.Vector2(130, 100)       # Les positions
 ghost2_pos = pygame.Vector2(550, 100)
 ghost3_pos = pygame.Vector2(780, 290)
 ghost4_pos = pygame.Vector2(360, 290)
-player_pos = pygame.Vector2(960 / 2, 655)
-bullet_pos = pygame.Vector2(960 / 2, 655)
+player_pos = pygame.Vector2(480, 655)
+bullet_pos = pygame.Vector2(480, 655)
 top_left_pos = pygame.Vector2(130, 100)
 bottom_left_pos = pygame.Vector2(130, 290)
 bottom_right_pos = pygame.Vector2(780, 290)
@@ -27,6 +27,8 @@ ghost4_direction = "left"
 score = 0
 font_dimension = 50
 font = pygame.font.SysFont(None, font_dimension)
+ghosts_pos = [ghost1_pos, ghost2_pos, ghost3_pos, ghost4_pos]
+ghosts_direction = [ghost1_direction, ghost2_direction, ghost3_direction, ghost4_direction]
 
 while running == True:  # Tant que le jeu tourne, la variable est vrai
 
@@ -36,7 +38,7 @@ while running == True:  # Tant que le jeu tourne, la variable est vrai
 
     screen.fill("blue")
     pygame.draw.rect(screen, "black", (*ghost_area, 700, 250))      # Temporaire !
-    pygame.draw.rect(screen, "deeppink", (*ghost1_pos, *ghost_dimension))       # Dessins des ennemis
+    pygame.draw.rect(screen, "deeppink", (*ghost1_pos, *ghost_dimension))       # Dessins des fantômes
     pygame.draw.rect(screen, "red", (*ghost2_pos, *ghost_dimension))
     pygame.draw.rect(screen, "deepskyblue", (*ghost3_pos, *ghost_dimension))
     pygame.draw.rect(screen, "orange", (*ghost4_pos, *ghost_dimension))
@@ -68,117 +70,39 @@ while running == True:  # Tant que le jeu tourne, la variable est vrai
     player_pos.x = max(player_width, min(960 - player_width, player_pos.x))   # Limite de déplacement du joueur en x
     bullet_pos.x = max(player_width, min(960 - player_width, bullet_pos.x))    # Limite de déplacement du tir en x
 
-    if (ghost1_pos.x <= bullet_pos.x <= ghost1_pos.x + 50 and       # Collision entre le 1er fantôme et le tir
-    ghost1_pos.y <= bullet_pos.y <= ghost1_pos.y + 60):
-        bullet_pos = player_pos.copy()
-        bullet_is_moving = False
-        score += 5
+    for pos in ghosts_pos:                                      # Parmi la liste de positions des fantômes
+        if (pos.x <= bullet_pos.x <= pos.x + 50 and             # Collisions entres les fantômes et le tir
+                pos.y <= bullet_pos.y <= pos.y + 60):
+            bullet_pos = player_pos.copy()
+            bullet_is_moving = False
+            score += 5
 
-    if (ghost2_pos.x <= bullet_pos.x <= ghost2_pos.x + 50 and       # Collision entre le 2ème fantôme et le tir
-            ghost2_pos.y <= bullet_pos.y <= ghost2_pos.y + 60):
-        bullet_pos = player_pos.copy()
-        bullet_is_moving = False
-        score += 5
+    for i in range(0, len(ghosts_pos)):         # Parmi la liste de positions et directions des fantômes
+        pos = ghosts_pos[i]
+        direction = ghosts_direction[i]
+        if direction == "right":                # Déplacement en boucles des fantômes dans le sens horaire
+            pos.y = top_left_pos.y
+            pos.x += 3
+        if direction == "down":
+            pos.x = top_right_pos.x
+            pos.y += 3
+        if direction == "left":
+            pos.y = bottom_right_pos.y
+            pos.x -= 3
+        if direction == "up":
+            pos.x = bottom_left_pos.x
+            pos.y -= 3
 
-    if (ghost3_pos.x <= bullet_pos.x <= ghost3_pos.x + 50 and       # Collision entre le 3ème fantôme et le tir
-            ghost3_pos.y <= bullet_pos.y <= ghost3_pos.y + 60):
-        bullet_pos = player_pos.copy()
-        bullet_is_moving = False
-        score += 5
+        if pos.x >= top_right_pos.x and direction == "right":
+            direction = "down"
+        if pos.y >= bottom_right_pos.y and direction == "down":
+            direction = "left"
+        if pos.x <= bottom_left_pos.x and direction == "left":
+            direction = "up"
+        if pos.y <= top_left_pos.y and direction == "up":
+            direction = "right"
 
-    if (ghost4_pos.x <= bullet_pos.x <= ghost4_pos.x + 50 and       # Collision entre le 4ème fantôme et le tira
-            ghost4_pos.y <= bullet_pos.y <= ghost4_pos.y + 60):
-        bullet_pos = player_pos.copy()
-        bullet_is_moving = False
-        score += 5
-
-    if ghost1_direction == "right":         # Déplacement en boucle du 1er fantôme
-        ghost1_pos.y = top_left_pos.y
-        ghost1_pos.x += 3
-    if ghost1_direction == "down":
-        ghost1_pos.x = top_right_pos.x
-        ghost1_pos.y += 3
-    if ghost1_direction == "left":
-        ghost1_pos.y = bottom_right_pos.y
-        ghost1_pos.x -= 3
-    if ghost1_direction == "up":
-        ghost1_pos.x = bottom_left_pos.x
-        ghost1_pos.y -= 3
-
-    if ghost1_pos.x >= top_right_pos.x and ghost1_direction == "right":
-        ghost1_direction = "down"
-    if ghost1_pos.y >= bottom_right_pos.y and ghost1_direction == "down":
-        ghost1_direction = "left"
-    if ghost1_pos.x <= bottom_left_pos.x and ghost1_direction == "left":
-        ghost1_direction = "up"
-    if ghost1_pos.y <= top_left_pos.y and ghost1_direction == "up":
-        ghost1_direction = "right"
-
-    if ghost2_direction == "right":         # Déplacement en boucle du 2ème fantôme
-        ghost2_pos.y = top_left_pos.y
-        ghost2_pos.x += 3
-    if ghost2_direction == "down":
-        ghost2_pos.x = top_right_pos.x
-        ghost2_pos.y += 3
-    if ghost2_direction == "left":
-        ghost2_pos.y = bottom_right_pos.y
-        ghost2_pos.x -= 3
-    if ghost2_direction == "up":
-        ghost2_pos.x = bottom_left_pos.x
-        ghost2_pos.y -= 3
-
-    if ghost2_pos.x >= top_right_pos.x and ghost2_direction == "right":
-        ghost2_direction = "down"
-    if ghost2_pos.y >= bottom_right_pos.y and ghost2_direction == "down":
-        ghost2_direction = "left"
-    if ghost2_pos.x <= bottom_left_pos.x and ghost2_direction == "left":
-        ghost2_direction = "up"
-    if ghost2_pos.y <= top_left_pos.y and ghost2_direction == "up":
-        ghost2_direction = "right"
-
-    if ghost3_direction == "right":         # Déplacement en boucle du 3ème fantôme
-        ghost3_pos.y = top_left_pos.y
-        ghost3_pos.x += 3
-    if ghost3_direction == "down":
-        ghost3_pos.x = top_right_pos.x
-        ghost3_pos.y += 3
-    if ghost3_direction == "left":
-        ghost3_pos.y = bottom_right_pos.y
-        ghost3_pos.x -= 3
-    if ghost3_direction == "up":
-        ghost3_pos.x = bottom_left_pos.x
-        ghost3_pos.y -= 3
-
-    if ghost3_pos.x >= top_right_pos.x and ghost3_direction == "right":
-        ghost3_direction = "down"
-    if ghost3_pos.y >= bottom_right_pos.y and ghost3_direction == "down":
-        ghost3_direction = "left"
-    if ghost3_pos.x <= bottom_left_pos.x and ghost3_direction == "left":
-        ghost3_direction = "up"
-    if ghost3_pos.y <= top_left_pos.y and ghost3_direction == "up":
-        ghost3_direction = "right"
-
-    if ghost4_direction == "right":         # Déplacement en boucle du 4ème fantôme
-        ghost4_pos.y = top_left_pos.y
-        ghost4_pos.x += 3
-    if ghost4_direction == "down":
-        ghost4_pos.x = top_right_pos.x
-        ghost4_pos.y += 3
-    if ghost4_direction == "left":
-        ghost4_pos.y = bottom_right_pos.y
-        ghost4_pos.x -= 3
-    if ghost4_direction == "up":
-        ghost4_pos.x = bottom_left_pos.x
-        ghost4_pos.y -= 3
-
-    if ghost4_pos.x >= top_right_pos.x and ghost4_direction == "right":
-        ghost4_direction = "down"
-    if ghost4_pos.y >= bottom_right_pos.y and ghost4_direction == "down":
-        ghost4_direction = "left"
-    if ghost4_pos.x <= bottom_left_pos.x and ghost4_direction == "left":
-        ghost4_direction = "up"
-    if ghost4_pos.y <= top_left_pos.y and ghost4_direction == "up":
-        ghost4_direction = "right"
+        ghosts_direction[i] = direction
 
 
     pygame.display.flip()       # Rafraîchissement de l'imagse

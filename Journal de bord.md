@@ -24,7 +24,7 @@ des fantômes et pour le joueur, Pac man.
 
 * 1er dépôt après réinitialisation du code de test
 * Installation de la bibliothèque _Pygame_
-* Incorporation d’un code d’exemple _Pygame_, d'un cercle qui bouge
+* Incorporation d’un code d’exemple _Pycharm_, d'un cercle qui bouge
 
 #### 28 Juin 2025 :
 
@@ -119,7 +119,13 @@ f-strings pour formater le texte. J'ai appris qu'elles permettent d'insérer des
 chaîne de caractères avec des informations dynamiques qui changent. J'ai également découvert que le 
 `True` dans `font.render(f"SCORE: {score}", True, (255, 255, 255))` est un booléen qui active _l'anti-aliasing_, 
 de ce que j'ai compris ça rend le texte plus lisible.
-* 
+
+#### 11 Juillet 2025 : 
+
+* Ajout d'un document de bibliographie
+* Regroupements en liste des commandes de collisions et déplacement en boucles des ennemis : Quelques difficultés
+avec la syntaxe des deux listes que j'ai dû utiliser pour le déplacement en boucles.
+
 
 # Planification
 _______________
@@ -137,7 +143,7 @@ _______________
 
 * Ajouter les collisions entre tir et fantôme FAIT
 * Faire augmenter le score quand un fantôme est touché et l'afficher FAIT
-* Regrouper sous formes de listes ou de tableaux 
+* Regrouper sous formes de listes ou de tableaux FAIT
 * Faire tirer les ennemis et faire perdre le joueur
 * Créer un bonus qui se déplace dans un mini-circuit en haut de l’écran
 * Gérer la collision entre Pac-Man et le bonus
