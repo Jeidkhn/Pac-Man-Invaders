@@ -1,6 +1,6 @@
 import pygame
 class Ghost:
-    def __init__(self, x, y, direction, color, dimension, screen, speed, top_left, bottom_left, bottom_right, top_right):
+    def __init__(self, x, y, direction, color, dimension, screen, speed, top_left, bottom_left, bottom_right, top_right, bullet_Manager):
         self.position = pygame.Vector2(x, y)
         self.direction = direction
         self.dimension = (50, 60)
@@ -11,6 +11,7 @@ class Ghost:
         self.bottom_left = pygame.Vector2(130, 290)
         self.bottom_right = pygame.Vector2(780, 290)
         self.top_right = pygame.Vector2(780, 100)
+        self.bullet_Manager = bullet_Manager
 
     def draw(self):
         pygame.draw.rect(self.screen, self.color, (self.position, self.dimension))
@@ -32,3 +33,6 @@ class Ghost:
             self.direction = "up"
         if self.position.y <= self.top_left.y and self.direction == "up":
             self.direction = "right"
+
+    def shoot(self):
+        self.bullet_Manager.add_new_ghost_bullet(self)
