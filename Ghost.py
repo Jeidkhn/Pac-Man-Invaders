@@ -1,16 +1,17 @@
 import pygame
 class Ghost:
+
     def __init__(self, x, y, direction, color, dimension, screen, speed, top_left, bottom_left, bottom_right, top_right, bullet_Manager):
         self.position = pygame.Vector2(x, y)
         self.direction = direction
-        self.dimension = (50, 60)
+        self.dimension = dimension
         self.color = color
         self.screen = screen
-        self.speed = 2
-        self.top_left = pygame.Vector2(130, 100)
-        self.bottom_left = pygame.Vector2(130, 290)
-        self.bottom_right = pygame.Vector2(780, 290)
-        self.top_right = pygame.Vector2(780, 100)
+        self.speed = speed
+        self.top_left = top_left
+        self.bottom_left = bottom_left
+        self.bottom_right = bottom_right
+        self.top_right = top_right
         self.bullet_Manager = bullet_Manager
 
     def draw(self):

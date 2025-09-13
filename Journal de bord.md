@@ -3,7 +3,7 @@ ____________________
 
 _Créer un petit jeu inspiré de Space Invaders, revisité avec l’univers graphique et sonore de Pac-Man. 
 Le joueur est Pac-Man, qui se déplace horizontalement et tire pour toucher (4) fantômes ennemis.
-Les ennemis ne meurent pas mais augmentent le score quand ils sont touchés. Ils peuvent aussi tirer. Le joueur doit éviter leurs tirs.
+Les ennemis ne meurent pas, mais augmentent le score quand ils sont touchés. Ils peuvent aussi tirer. Le joueur doit éviter leurs tirs.
 Des obstacles se situent entre Pac-Man et les fantômes afin de se protéger des tirs.
 Le jeu s’intensifie progressivement : la vitesse des ennemis et la fréquence des tirs augmentent, jusqu’à un palier.
 Un bonus spécial circulera en haut de l’écran : s’il est atteint par un tir, Pac-Man obtient un multiplicateur de score temporaire (*n).
@@ -42,22 +42,22 @@ des fantômes et pour le joueur, Pac man.
 pour limiter le déplacement du joueur, notamment pourquoi il fallait inclure `player_pos.x` dans la comparaison.
 * Tir du joueur : Difficultés à comprendre pourquoi les deux éléments du jeu bougent en même temps, donc comprendre 
 la différence entre la copie d'un scalaire et la référence d'un objet. 
-Notamment la différence entre ces lignes (faux): 
+Notamment la différence entre ces lignes (faux) : 
 ```
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 1.1)
 bullet_pos = player_pos
 ```
-Et ces lignes (juste):
+Et ces lignes (juste) :
 ```
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 1.1)
 bullet_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 1.1)
 ```
-J'ai donc compris que dans ce cas le joueur et le tir sont différents, car il y a maintenant 2 objets.
+J'ai donc compris que dans ce cas le joueur et le tir sont différents, car il y a maintenant deux objets.
 * Ajout de commentaires pour mieux me retrouver dans le code au fur et à mesure que j'avance dans le projet
-* Limitation du mouvement du tir sur l'axe x, car après test il partait 
+* Limitation du mouvement du tir sur l'axe x, car après test, il partait 
 exactement comme le joueur sans ses limites de déplacement
 
-#### 01 Juillet :
+#### 01 juillet :
 
 * Retour du tir au joueur après dépassement de l'écran : La convention dans les languages informatiques 
 du sens de l'axe y en comparaison avec les maths me fait encore un peu défaut quand je dois me représenter 
@@ -71,11 +71,11 @@ Et non :
 if bullet_pos.y <= 720:   
 ```
 
-#### 02 Juillet :
+#### 02 juillet :
 
 * Insertion d'un premier croquis de jeu
 
-#### 04 Juillet :
+#### 04 juillet :
 
 * Ajout de l'objectif écrit de mon projet pour pouvoir mieux m'orienter dans la planification
 * Changement de la façon d'exprimer la position pour le joueur, le tir et les ennemis, pour avoir plus de cohérence
@@ -96,7 +96,7 @@ se trouvent en -x/y qu'en +x/y par rapport au point de position. Concernant la p
 en calculant le perimètre de la surface où se trouve les fantômes en veillant à prendre la largeur/hauteur 
 des ennemis en compte. Afin qu'ils soient inscrits dans le surface rectangulaire.
 
-#### 06-09 Juillet :
+#### 06-09 juillet :
 
 * Déplacement des 4 ennemis en boucle : J’ai enfin réussi à faire fonctionner le déplacement en boucle des ennemis. 
 Pour cela, j’ai d’abord défini les positions précises des quatre coins du rectangle noir 
@@ -107,12 +107,12 @@ le code plus tard pour qu’il soit plus compact, car il est actuellement quatre
 à modifier si je veux ajouter un nouveau fantôme. Le problème qui m’a bloqué venait d’une coordonnée incorrecte 
 assignée à un des coins du rectangle, ce que je n’ai remarqué qu’au bout de trois jours.
 
-#### 09 Juillet : 
+#### 09 juillet : 
 
 * Collisions avec les ennemis et le tir : J'ai crée des intervalles en x et y délimitant le rectangle formant les ennemis 
 en fonction de si le tir passe à travers cette intervalle et s'il y passe il retourne à la position du joueur.
 
-#### 10 Juillet :
+#### 10 juillet :
 
 * Implémentation du système de score : J'ai réussi à afficher le score à l'écran, mais j'ai eu du mal à comprendre les 
 f-strings pour formater le texte. J'ai appris qu'elles permettent d'insérer des valeurs de variables directement dans une 
@@ -120,14 +120,14 @@ chaîne de caractères avec des informations dynamiques qui changent. J'ai égal
 `True` dans `font.render(f"SCORE: {score}", True, ("color"))` est un booléen qui active _l'anti-aliasing_, 
 de ce que j'ai compris ça rend le texte plus lisible.
 
-#### 11 Juillet : 
+#### 11 juillet : 
 
 * Ajout d'un document de bibliographie
 * Regroupements en liste des commandes de collisions et déplacement en boucles des ennemis : Quelques difficultés
 avec la syntaxe des deux listes que j'ai dû utiliser pour le déplacement en boucles
 * Changement de quelques noms pour améliorer la cohérence
 
-#### 12 Juillet :
+#### 12 juillet :
 
 * Système automatique de tir ennemi, encore en cours : 
 Le but est de pouvoir utiliser les dimensions du tir joueur pour les donner aux tirs ennemis. 
@@ -170,6 +170,42 @@ des classes d'objets car je n'ai pas réussi à trouver le souci de mon tir enne
 voulais en descendant vers le joueur. Je n'ai donc pas encore la solution pour faire le tir ennemi mais je vais plutôt 
 me pencher maintenant sur une refonte quasi total du code.
 
+#### 05 août - 03 septembre :
+
+* Nettoyage et réorganisation du code pour le rendre plus clair. Regroupement des variables et fonctions par thème : joueur, ennemis, tirs.
+* Réflexion sur l’utilisation de classes pour simplifier les déplacements et collisions pour la suite (je dois encore les ajouter)
+* Suppression en cours du code redondant et simplification des boucles pour les ennemis.
+* Ajout de commentaires à revoir pour mieux comprendre le fonctionnement du jeu.
+
+#### 5 septembre : 
+
+* 2ème RDV Mentor, prise de conscience de la direction dans laquelle je vais répondre aux questions:
+1) Problématique : Pac-Man se déplace uniquement à l’horizontale et peut tirer (limité à 2 tirs/s).
+Les ennemis (4 fantômes) tournent en boucle et tirent aussi.
+Le joueur marque des points en touchant les fantômes, mais ils ne meurent pas.
+Le joueur perd s’il est touché par un tir ennemi.
+Il existe un bonus qui donne un multiplicateur de score temporaire (*5).
+Le jeu s’intensifie progressivement (vitesse ennemis + fréquence de tirs ennemis).
+2) Ressources : Quelques vidéos ont été vues, des forums et l'aide de mon père pour l'approche
+à avoir notamment d'orientation objet, qui m'a donc conduit à recommencer en partie.
+3) Calendrier : Encore à voir
+
+
+#### 9 septembre : 
+
+* Ajout des tirs ennemis.
+
+#### 11 septembre :
+
+* Ajout du score en classe et encore du nettoyage.
+
+#### 13 septembre : 
+
+* Refonte du code en programmation orientée objet (POO) quaisment terminé : J'ai mis à jour quasiment tout sauf 
+encore les collisions joueur - tirs fantômes et fantômes - tir joueur, et la gestion des tirs hors écran. 
+J'arriverai donc au même niveau que l'avant POO après ces étapes.
+* Changements de constantes en variables
+
 
 # Planification
 _______________
@@ -188,15 +224,29 @@ _______________
 * Ajouter les collisions entre tir et fantôme FAIT
 * Faire augmenter le score quand un fantôme est touché et l'afficher FAIT
 * Regrouper sous formes de listes ou de tableaux FAIT
-* Faire tirer les ennemis et faire perdre le joueur
 
-#### Semaine du 14.07 - 20.07 :
+#### Semaine du 08.09 - 14.09 :
 
+* Rajouter les collisions entre tir et fantôme
+* Réafficher le score Fait
+* Ajouter le tir du joueur avec nouvelle limite (2 tirs par seconde)
+* Faire tirer les ennemis FAIT
+* Faire perdre le joueur 
 * Créer un bonus qui se déplace dans un mini-circuit en haut de l’écran
 * Gérer la collision entre Pac-Man et le bonus
+
+#### Semaine du 15.09 - 21.09 :
+
+* Rajouter les collisions entre tir et fantôme
 * Ajouter le tir du joueur avec nouvelle limite (2 tirs par seconde)
-* 
+* Faire perdre le joueur
+* Faire augmenter le score 
+* Créer un bonus qui se déplace dans un mini-circuit en haut de l’écran
+* Gérer la collision entre Pac-Man et le bonus
 
-#### Semaine du 21.07 - 27.07 :
 
-*  
+#### Semaine du 22.09 - 28.09 : 
+
+*
+
+#### Semaine du 

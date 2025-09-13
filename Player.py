@@ -1,11 +1,12 @@
 import pygame
 class Player:
+
     def __init__(self, x, y, color, width, screen, speed, bullet_Manager):
         self.position = pygame.Vector2(x, y)
-        self.width = 40
+        self.width = width
         self.color = color
         self.screen = screen
-        self.speed_move = 9
+        self.speed_move = speed
         self.bullet_Manager = bullet_Manager
 
     def draw(self):
