@@ -17,13 +17,20 @@ class BulletManager:
             self.player_bullets[i].draw()
 
     def add_new_ghost_bullet(self, ghost):
-        bullet_ghost = Bullet.Bullet(ghost.position.x - 5, ghost.position.y - 5, "down",
-                                     "deeppink", (10, 10), self.screen, 7)
+        bullet_ghost = Bullet.Bullet(ghost.position.x + 20, ghost.position.y + 25, "down",
+                                     "red", (10, 10), self.screen, 7)
         self.ghost_bullets.append(bullet_ghost)
 
     def move_and_draw_ghost_bullet(self):
         for i in range(0, len(self.ghost_bullets)):
             self.ghost_bullets[i].move()
             self.ghost_bullets[i].draw()
+
+    def delete_player_bullet(self, bullet):
+        self.player_bullets.remove(bullet)
+
+    def delete_ghost_bullet(self, bullet):
+        for i in range(0, len(self.ghost_bullets)):
+            self.ghost_bullets.remove(bullet)
 
 

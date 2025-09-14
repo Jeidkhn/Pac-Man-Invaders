@@ -1,10 +1,12 @@
-import pygame
+import pygame                                                       # Imports
 import Player
 import Ghost
 import BulletManager
 import Score
 pygame.init()
-screen = pygame.display.set_mode((960, 720))    # Taille d'écran rétro
+screen_height = 720
+screen_width = 960
+screen = pygame.display.set_mode((screen_width, screen_height))    # Taille d'écran rétro
 clock = pygame.time.Clock()     # Le temps du jeu
 dt = 0.0                                          # Variables
 timer = 0.0
@@ -29,16 +31,15 @@ player = Player.Player(480, 655, "yellow", 40, screen, 9, bullet_manager)
 score = Score.Score(screen, 30, 30, pygame.font.SysFont(None, 50), 0, "")
 
 
-while running == True:  # Tant que le jeu tourne, la variable est vrai
+while running == True:                   # Tant que le jeu tourne, la variable est vrai
 
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:   # Si l'écran d'affichage est supprimé, arrêt du jeu, car variable devient fausse
+        if event.type == pygame.QUIT:    # Si l'écran d'affichage est supprimé, arrêt du jeu, car variable devient fausse
             running = False
 
-    screen.fill("blue")
-    score.show_score()
+    screen.fill("darkblue")
 
-    keys = pygame.key.get_pressed()
+    keys = pygame.key.get_pressed()                                     # Déplacement du joueur
     if keys[pygame.K_w]:
         player.shoot()
 
@@ -55,13 +56,14 @@ while running == True:  # Tant que le jeu tourne, la variable est vrai
         ghost4.shoot()
         timer = 0.0
 
-    ghost1.draw()
+    ghost1.draw()                                                       # Dessins des objets
     ghost2.draw()
     ghost3.draw()
     ghost4.draw()
     player.draw()
+    score.show_score()
 
-    ghost1.move()
+    ghost1.move()                                                       # Déplacements des fantômes
     ghost2.move()
     ghost3.move()
     ghost4.move()
@@ -69,9 +71,27 @@ while running == True:  # Tant que le jeu tourne, la variable est vrai
     bullet_manager.move_and_draw_ghost_bullet()
     bullet_manager.move_and_draw_player_bullet()
 
+    for bullet in bullet_manager.ghost_bullets:                                                         # Collisions
+        if (player.position.x - player.width <= bullet.position.x <= player.position.x + player.width
+        and player.position.y - player.width <= bullet.position.y <= player.position.y + player.width):
+            running = False
 
-    pygame.display.flip()       # Rafraîchissement de l'image
+    for bullet in bullet_manager.player_bullets:
+        for ghost in [ghost1, ghost2, ghost3, ghost4]:
+            if (ghost.position.x <= bullet.position.x <= ghost.position.x + ghost.dimension[0]
+            and ghost.position.y <= bullet.position.y <= ghost.position.y + ghost.dimension[1]):
+                score.add_score()
+
+    for bullet in bullet_manager.player_bullets:                                         # Suppression tirs hors-écran
+        if bullet.position.y <= 0:
+            bullet_manager.player_bullets.remove(bullet)
+
+    for bullet in bullet_manager.ghost_bullets:
+        if bullet.position.y >= screen_height:
+            bullet_manager.ghost_bullets.remove(bullet)
+
+    pygame.display.flip()               # Rafraîchissement de l'image
     timer += dt
-    dt = clock.tick(60) / 1000       # Vitesse de rafraîchissement
+    dt = clock.tick(60) / 1000          # Vitesse de rafraîchissement
 
 pygame.quit()

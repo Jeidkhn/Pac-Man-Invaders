@@ -91,14 +91,14 @@ Je vais plus souvent la définir ainsi :
 * Ajout des 4 ennemis sans déplacement, ni tir : Après constation d'un changement au niveau de la répartition des pixels
 de largeur/hauteur en fonction de `pygame.draw.rect` et `pygame.draw.circle`. J'ai fait plusieurs tests et j'ai compris que pour
 un rectangle, les pixels vont commencer à partir du point défini de position sur l'écran et continuer en +x et +y (sens conventionnel informatique).
-Dans le cas du cercle la répartition des pixels se fait au milieu de la forme c-à-d qu'autant de pixels 
-se trouvent en -x/y qu'en +x/y par rapport au point de position. Concernant la position donnée, je l'ai détérminé
-en calculant le perimètre de la surface où se trouve les fantômes en veillant à prendre la largeur/hauteur 
-des ennemis en compte. Afin qu'ils soient inscrits dans le surface rectangulaire.
+Dans le cas du cercle la répartition des pixels se fait au milieu de la forme c.-à-d. qu'autant de pixels 
+se trouvent en -x, -y qu'en +x, +y par rapport au point de position. Concernant la position donnée, je l'ai détérminé
+en calculant le perimètre de la surface sur laquelle se trouvent les fantômes en veillant à prendre la largeur/hauteur 
+des ennemis en compte. Afin qu'ils soient inscrits dans la surface rectangulaire.
 
 #### 06-09 juillet :
 
-* Déplacement des 4 ennemis en boucle : J’ai enfin réussi à faire fonctionner le déplacement en boucle des ennemis. 
+* Déplacement des 4 ennemis en boucle : j'ai enfin réussi à faire fonctionner le déplacement en boucle des ennemis. 
 Pour cela, j’ai d’abord défini les positions précises des quatre coins du rectangle noir 
 qui délimite la surface de déplacement des fantômes. J’ai commencé par faire tous les tests avec un seul fantôme 
 pour observer le comportement plus facilement, puis j’ai copié le même fonctionnement pour les autres. Le déplacement 
@@ -109,7 +109,7 @@ assignée à un des coins du rectangle, ce que je n’ai remarqué qu’au bout 
 
 #### 09 juillet : 
 
-* Collisions avec les ennemis et le tir : J'ai crée des intervalles en x et y délimitant le rectangle formant les ennemis 
+* Collisions avec les ennemis et le tir : j'ai crée des intervalles en x et y délimitant le rectangle formant les ennemis 
 en fonction de si le tir passe à travers cette intervalle et s'il y passe il retourne à la position du joueur.
 
 #### 10 juillet :
@@ -199,12 +199,22 @@ Le jeu s’intensifie progressivement (vitesse ennemis + fréquence de tirs enne
 
 * Ajout du score en classe et encore du nettoyage.
 
+#### 12 septembre : 
+
+* 
+
 #### 13 septembre : 
 
 * Refonte du code en programmation orientée objet (POO) quaisment terminé : J'ai mis à jour quasiment tout sauf 
 encore les collisions joueur - tirs fantômes et fantômes - tir joueur, et la gestion des tirs hors écran. 
 J'arriverai donc au même niveau que l'avant POO après ces étapes.
 * Changements de constantes en variables
+
+#### 14 septembre : 
+
+* Ajout de collisions des tirs sur fantômes et sur joueur (non-orienté objet)
+* Ajout de points au Score après cible atteinte
+* Suppression des tirs hors écran 
 
 
 # Planification
@@ -228,7 +238,7 @@ _______________
 #### Semaine du 08.09 - 14.09 :
 
 * Rajouter les collisions entre tir et fantôme
-* Réafficher le score Fait
+* Réafficher le score FAIT
 * Ajouter le tir du joueur avec nouvelle limite (2 tirs par seconde)
 * Faire tirer les ennemis FAIT
 * Faire perdre le joueur 
@@ -237,10 +247,10 @@ _______________
 
 #### Semaine du 15.09 - 21.09 :
 
-* Rajouter les collisions entre tir et fantôme
+* Rajouter les collisions entre tir et fantôme ~FAIT
+* Faire perdre le joueur et collisions tir ennemi sur joueur ~FAIT
+* Faire augmenter le score ~FAIT
 * Ajouter le tir du joueur avec nouvelle limite (2 tirs par seconde)
-* Faire perdre le joueur
-* Faire augmenter le score 
 * Créer un bonus qui se déplace dans un mini-circuit en haut de l’écran
 * Gérer la collision entre Pac-Man et le bonus
 

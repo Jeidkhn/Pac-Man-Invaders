@@ -10,3 +10,6 @@ class Score:
     def show_score(self):
         text = self.font.render(f"SCORE: {self.score}", True, "black")
         self.screen.blit(text, self.position)
+
+    def add_score(self):
+        self.score += 10
