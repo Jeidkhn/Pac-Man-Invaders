@@ -1,7 +1,8 @@
 import pygame
 class Ghost:
 
-    def __init__(self, x, y, direction, color, dimension, screen, speed, top_left, bottom_left, bottom_right, top_right, bullet_Manager):
+    def __init__(self, x, y, direction, color, dimension, screen, speed, top_left, bottom_left, bottom_right,
+                 top_right, bullet_Manager):
         self.position = pygame.Vector2(x, y)
         self.direction = direction
         self.dimension = dimension

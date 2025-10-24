@@ -71,10 +71,13 @@ while running == True:                   # Tant que le jeu tourne, la variable e
     bullet_manager.move_and_draw_ghost_bullet()
     bullet_manager.move_and_draw_player_bullet()
 
-    for bullet in bullet_manager.ghost_bullets:                                                         # Collisions
-        if (player.position.x - player.width <= bullet.position.x <= player.position.x + player.width
-        and player.position.y - player.width <= bullet.position.y <= player.position.y + player.width):
-            running = False
+    Is_player_touched()
+
+    #for bullet in bullet_manager.ghost_bullets:                                                         # Collisions à modifier
+    #   if (player.position.x - player.width <= bullet.position.x <= player.position.x + player.width
+    #   and player.position.y - player.width <= bullet.position.y <= player.position.y + player.width):
+    #       print(score.score)
+    #       running = Falase
 
     for bullet in bullet_manager.player_bullets:
         for ghost in [ghost1, ghost2, ghost3, ghost4]:
