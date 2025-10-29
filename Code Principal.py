@@ -3,6 +3,7 @@ import Player
 import Ghost
 import BulletManager
 import Score
+import CollisionManager
 pygame.init()
 screen_height = 720
 screen_width = 960
@@ -71,13 +72,8 @@ while running == True:                   # Tant que le jeu tourne, la variable e
     bullet_manager.move_and_draw_ghost_bullet()
     bullet_manager.move_and_draw_player_bullet()
 
-    Is_player_touched()
-
-    #for bullet in bullet_manager.ghost_bullets:                                                         # Collisions à modifier
-    #   if (player.position.x - player.width <= bullet.position.x <= player.position.x + player.width
-    #   and player.position.y - player.width <= bullet.position.y <= player.position.y + player.width):
-    #       print(score.score)
-    #       running = Falase
+    if CollisionManager.is_player_touched(player, bullet_manager):
+        score.add_score()
 
     for bullet in bullet_manager.player_bullets:
         for ghost in [ghost1, ghost2, ghost3, ghost4]:
