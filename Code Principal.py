@@ -69,11 +69,14 @@ while running == True:                   # Tant que le jeu tourne, la variable e
     ghost3.move()
     ghost4.move()
 
-    bullet_manager.move_and_draw_ghost_bullet()
+    bullet_manager.move_and_draw_ghost_bullet()                         # Création des nouveaux tirs
     bullet_manager.move_and_draw_player_bullet()
 
-    if CollisionManager.is_player_touched(player, bullet_manager):
+    if CollisionManager.is_player_touched(player, bullet_manager):      # Collision des tirs
+        running = False
+    if CollisionManager.is_ghost_touched(ghost1, bullet_manager):
         score.add_score()
+        bullet_manager.delete_player_bullet(bullet)
 
     for bullet in bullet_manager.player_bullets:
         for ghost in [ghost1, ghost2, ghost3, ghost4]:
