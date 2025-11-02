@@ -17,8 +17,8 @@ class Ghost:
 
     def draw(self):
         pygame.draw.rect(self.screen, self.color, (self.position, self.dimension))
-    def move(self):
-        if self.direction == "right":                # Déplacement en boucle des fantômes dans le sens horaire
+    def move(self):                                 # Déplacement en boucle des fantômes dans le sens horaire
+        if self.direction == "right":
             self.position.x += self.speed
         if self.direction == "down":
             self.position.y += self.speed

@@ -28,7 +28,7 @@ ghost3 = Ghost.Ghost(780, 290, "left", "deepskyblue", (50, 60), screen,
 ghost4 = Ghost.Ghost(360, 290, "left", "orange", (50, 60), screen,
                      2, pygame.Vector2(130, 100), pygame.Vector2(130, 290), pygame.Vector2(780, 290),
                      pygame.Vector2(780, 100), bullet_manager)
-player = Player.Player(480, 655, "yellow", 40, screen, 9, bullet_manager)
+player = Player.Player(480, 655, "yellow", 40, screen, 9, bullet_manager, pygame.time.clock, 2.0)
 score = Score.Score(screen, 30, 30, pygame.font.SysFont(None, 50), 0, "")
 
 
@@ -78,19 +78,13 @@ while running == True:                   # Tant que le jeu tourne, la variable e
         score.add_score()
         bullet_manager.delete_player_bullet(bullet)
 
-    for bullet in bullet_manager.player_bullets:
-        for ghost in [ghost1, ghost2, ghost3, ghost4]:
-            if (ghost.position.x <= bullet.position.x <= ghost.position.x + ghost.dimension[0]
-            and ghost.position.y <= bullet.position.y <= ghost.position.y + ghost.dimension[1]):
-                score.add_score()
-
-    for bullet in bullet_manager.player_bullets:                                         # Suppression tirs hors-écran
+    for bullet in bullet_manager.player_bullets[:]:                      # Suppression tirs hors-écran
         if bullet.position.y <= 0:
-            bullet_manager.player_bullets.remove(bullet)
+            bullet_manager.delete_player_bullet(bullet)
 
-    for bullet in bullet_manager.ghost_bullets:
+    for bullet in bullet_manager.ghost_bullets[:]:
         if bullet.position.y >= screen_height:
-            bullet_manager.ghost_bullets.remove(bullet)
+            bullet_manager.delete_ghost_bullet(bullet)
 
     pygame.display.flip()               # Rafraîchissement de l'image
     timer += dt

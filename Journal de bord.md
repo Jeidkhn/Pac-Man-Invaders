@@ -216,6 +216,44 @@ J'arriverai donc au même niveau que l'avant POO après ces étapes.
 * Ajout de points au Score après cible atteinte
 * Suppression des tirs hors écran 
 
+#### 22 octobre :
+
+* Ajout de la classe CollisionManager afin de gérer les collisions entre objet
+
+#### 24 octobre :
+
+* Classe utilitaire : De ce que j'ai compris c'est une classe qui permet d'avoir la structure toujours 
+sous formes de classe mais sans l'identité objet au début et se contente d'avoir "l'armature" :
+Classe avec identité :
+
+```
+    class Player:
+    def __init__(self, x, y, color, width, screen, speed, bullet_Manager):
+        self.position = pygame.Vector2(x, y)
+        self.width = width
+        self.color = color
+        self.screen = screen
+        self.speed_move = speed
+        self.bullet_Manager = bullet_Manager
+```
+Classe utilitaire : 
+```
+    class CollisionManager:
+    pass
+```
+J'étais bloqué car je cherchais comment appliquer la méthode sans objets et là je suis débloqué.
+
+#### 30 Octobre : 
+
+* Ajout collision tir joueur - fantômes et tir fantômes - joueur
+
+#### 31 octobre :
+
+* Modification tir supprimé après collisions
+
+#### 2 novembre : 
+
+* Correction en cours du tir joueur sur les fantômes et le tir hors de l'écran.
 
 # Planification
 _______________
@@ -254,9 +292,11 @@ _______________
 * Créer un bonus qui se déplace dans un mini-circuit en haut de l’écran
 * Gérer la collision entre Pac-Man et le bonus
 
+#### Semaine du 03.11 - 09.11 :
 
-#### Semaine du 22.09 - 28.09 : 
+* Corriger la collision du tir joueur sur fantôme
+* Ajouter le tir du joueur avec nouvelle limite (2 tirs par seconde)
+* Créer un bonus qui se déplace dans un mini-circuit en haut de l’écran
+* Gérer la collision entre Pac-Man et le bonus
 
-*
 
-#### Semaine du 

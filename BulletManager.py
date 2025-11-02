@@ -30,7 +30,6 @@ class BulletManager:
         self.player_bullets.remove(bullet)
 
     def delete_ghost_bullet(self, bullet):
-        for i in range(0, len(self.ghost_bullets)):
-            self.ghost_bullets.remove(bullet)
+        self.ghost_bullets.remove(bullet)
 
 
