@@ -255,6 +255,22 @@ J'étais bloqué car je cherchais comment appliquer la méthode sans objets et l
 
 * Correction en cours du tir joueur sur les fantômes et le tir hors de l'écran.
 
+#### 17 novembre :
+
+* Correction tir joueur + une limite de temps entre chaque tir ajoutée: J'ai utilisé la commande modulo pour créer
+une action qui s'exécute périodiquement :
+```
+        if self.counter % self.interval == 0:
+```
+Cette ligne vérifie si le compteur a atteint un multiple exact de l’intervalle.
+* Correction suppression tirs ennemis hors de l'écran.
+* Correction collision tir joueur sur fantômes en transformant la méthode de collision en une variable :
+```
+        bullet_touching_ghost = CollisionManager.is_ghost_touched(ghost, bullet_manager)
+```
+* Changement de couleur du score et de vitesses de tir fantômes.
+* Ajout du "fantôme"-bonus que je suis en train de changer en bonus à part entière avec une classe propre à lui
+
 # Planification
 _______________
 
@@ -292,11 +308,11 @@ _______________
 * Créer un bonus qui se déplace dans un mini-circuit en haut de l’écran
 * Gérer la collision entre Pac-Man et le bonus
 
-#### Semaine du 03.11 - 09.11 :
+#### Semaines du 10.11 - 21.11 :
 
-* Corriger la collision du tir joueur sur fantôme
-* Ajouter le tir du joueur avec nouvelle limite (2 tirs par seconde)
-* Créer un bonus qui se déplace dans un mini-circuit en haut de l’écran
+* Corriger la collision du tir joueur sur fantôme FAIT
+* Ajouter le tir du joueur avec nouvelle limite FAIT
+* Créer un bonus qui se situe sur l’écran entre les fantômes
 * Gérer la collision entre Pac-Man et le bonus
 
 

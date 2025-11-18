@@ -1,8 +1,23 @@
 import pygame
 class Ghost:
 
-    def __init__(self, x, y, direction, color, dimension, screen, speed, top_left, bottom_left, bottom_right,
-                 top_right, bullet_Manager):
+    def __init__(
+            self,
+            x,
+            y,
+            direction,
+            color,
+            dimension,
+            screen,
+            speed,
+            top_left,
+            bottom_left,
+            bottom_right,
+            top_right,
+            bullet_Manager,
+            counter,
+            interval
+    ):
         self.position = pygame.Vector2(x, y)
         self.direction = direction
         self.dimension = dimension
@@ -14,9 +29,17 @@ class Ghost:
         self.bottom_right = bottom_right
         self.top_right = top_right
         self.bullet_Manager = bullet_Manager
+        self.counter = counter
+        self.interval = interval
 
     def draw(self):
-        pygame.draw.rect(self.screen, self.color, (self.position, self.dimension))
+        pygame.draw.rect(
+            self.screen,
+            self.color,
+            (self.position, self.dimension)
+        )
+        self.counter += 1
+
     def move(self):                                 # Déplacement en boucle des fantômes dans le sens horaire
         if self.direction == "right":
             self.position.x += self.speed
@@ -37,4 +60,8 @@ class Ghost:
             self.direction = "right"
 
     def shoot(self):
-        self.bullet_Manager.add_new_ghost_bullet(self)
+        if self.counter % self.interval == 0:
+            self.bullet_Manager.add_new_ghost_bullet(self)
+
+    def changeSpeed(self, speed):
+        self.speed = speed

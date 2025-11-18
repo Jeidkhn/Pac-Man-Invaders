@@ -17,9 +17,9 @@ class BulletManager:
             self.player_bullets[i].draw()
 
     def add_new_ghost_bullet(self, ghost):
-        bullet_ghost = Bullet.Bullet(ghost.position.x + 20, ghost.position.y + 25, "down",
+        ghost_bullet = Bullet.Bullet(ghost.position.x + 20, ghost.position.y + 25, "down",
                                      "red", (10, 10), self.screen, 7)
-        self.ghost_bullets.append(bullet_ghost)
+        self.ghost_bullets.append(ghost_bullet)
 
     def move_and_draw_ghost_bullet(self):
         for i in range(0, len(self.ghost_bullets)):

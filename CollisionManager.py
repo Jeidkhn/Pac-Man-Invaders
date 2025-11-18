@@ -12,6 +12,6 @@ def is_ghost_touched(ghost, bulletManager):
     for bullet in bulletManager.player_bullets:
         if (ghost.position.x <= bullet.position.x <= ghost.position.x + ghost.dimension[0]
                 and ghost.position.y <= bullet.position.y <= ghost.position.y + ghost.dimension[1]):
-            return True
-    return False
+            return bullet
+    return None
 
