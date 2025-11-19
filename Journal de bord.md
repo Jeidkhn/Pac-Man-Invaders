@@ -269,7 +269,17 @@ Cette ligne vérifie si le compteur a atteint un multiple exact de l’intervall
         bullet_touching_ghost = CollisionManager.is_ghost_touched(ghost, bullet_manager)
 ```
 * Changement de couleur du score et de vitesses de tir fantômes.
-* Ajout du "fantôme"-bonus que je suis en train de changer en bonus à part entière avec une classe propre à lui
+* Ajout du "fantôme" - bonus que je suis en train de changer en bonus à part entière, avec une classe propre à lui
+
+#### 18 Novembre : 
+
+* Correction des tirs hors-écran supprimés par le joueur et les fantômes
+
+#### 19 Novembre : 
+
+* Ajout de la classe BonusManager, même principe que le BulletManager mais pour l'apparition et disparition entre autres 
+du bonus.
+* 
 
 # Planification
 _______________
@@ -312,7 +322,9 @@ _______________
 
 * Corriger la collision du tir joueur sur fantôme FAIT
 * Ajouter le tir du joueur avec nouvelle limite FAIT
-* Créer un bonus qui se situe sur l’écran entre les fantômes
-* Gérer la collision entre Pac-Man et le bonus
-
-
+* Créer un bonus qui se situe sur l’écran entre les fantômes FAIT
+* Gérer la collision entre Pac-Man et le bonus 
+* Gérer l'apparition et la disparition du bonus 
+* Ajouter graphismes sur objets
+* Assurer le bon fonctionnement global du jeu
+* Ajouter les commentaires et indications et remettre au propre

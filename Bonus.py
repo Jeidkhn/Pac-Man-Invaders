@@ -1,11 +1,12 @@
 import pygame
+from random import randint
+
 class Bonus:
 
     def __init__(
             self,
             x,
             y,
-            direction,
             color,
             dimension,
             screen,
@@ -13,10 +14,9 @@ class Bonus:
             limit_left,
             limit_right,
             counter,
-            interval
     ):
         self.position = pygame.Vector2(x, y)
-        self.direction = direction
+        self.direction = randint(0,1)
         self.dimension = dimension
         self.color = color
         self.screen = screen
@@ -24,4 +24,31 @@ class Bonus:
         self.limit_left = limit_left
         self.limit_right = limit_right
         self.counter = counter
-        self.interval = interval
+
+    def draw(self):
+        pygame.draw.rect(
+            self.screen,
+            self.color,
+            (self.position, self.dimension)
+        )
+    def move(self):
+        if self.direction == 0:
+            self.position.x -= self.speed
+        if self.direction == 1:
+            self.position.x += self.speed
+
+        if self.position.x >= self.limit_right.x and self.direction == 1:
+            self.direction = 0
+        if self.position.x <= self.limit_left.x and self.direction == 0:
+            self.direction = 1
+
+
+    def change_speed(self, speed):
+        if self.direction == "left":
+            self.speed = speed
+        else:
+            self.speed = speed
+
+
+
+

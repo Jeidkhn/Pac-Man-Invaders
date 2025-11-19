@@ -13,3 +13,6 @@ class Score:
 
     def add_score_normal(self):
         self.score += 10
+
+    def add_score_bonus(self):
+        self.score += 150

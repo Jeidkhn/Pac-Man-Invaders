@@ -63,5 +63,5 @@ class Ghost:
         if self.counter % self.interval == 0:
             self.bullet_Manager.add_new_ghost_bullet(self)
 
-    def changeSpeed(self, speed):
+    def change_speed(self, speed):
         self.speed = speed

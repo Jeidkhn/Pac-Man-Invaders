@@ -1,12 +1,13 @@
 from random import randint
-
 import pygame                                                       # Imports de fichiers
+
+import BonusManager
 import Player
 import Ghost
 import BulletManager
 import Score
 import CollisionManager
-import cmath
+import Bonus
 
 pygame.init()
 screen_height = 720
@@ -15,8 +16,13 @@ screen = pygame.display.set_mode((screen_width, screen_height))    # Taille d'é
 clock = pygame.time.Clock()     # Le temps du jeu
 dt = 0.0                                          # Variables
 running = True
+timer = 0
 
 bullet_manager = BulletManager.BulletManager(screen)
+bonus_manager = BonusManager.BonusManager(screen)
+
+bonus = None
+bullet_touching_bonus = None
 
 ghost1 = Ghost.Ghost(
     130,
@@ -32,7 +38,7 @@ ghost1 = Ghost.Ghost(
     pygame.Vector2(780, 100),
     bullet_manager,
     0,
-    600
+    120
 )
 
 ghost2 = Ghost.Ghost(
@@ -49,7 +55,7 @@ ghost2 = Ghost.Ghost(
     pygame.Vector2(780, 100),
     bullet_manager,
     0,
-    900
+    180
 )
 
 ghost3 = Ghost.Ghost(
@@ -66,7 +72,7 @@ ghost3 = Ghost.Ghost(
     pygame.Vector2(780, 100),
     bullet_manager,
     0,
-    750
+    150
 )
 
 ghost4 = Ghost.Ghost(
@@ -83,24 +89,7 @@ ghost4 = Ghost.Ghost(
     pygame.Vector2(780, 100),
     bullet_manager,
     0,
-    450
-)
-
-ghost_bonus = Ghost.Ghost(
-    360,
-    160,
-    "left",
-    "yellow",
-    (40,40),
-    screen,
-    10,
-    pygame.Vector2(130, 160),
-    pygame.Vector2(130, 160),
-    pygame.Vector2(780, 160),
-    pygame.Vector2(780, 160),
-    None,
-    0,
-    99999999
+    90
 )
 
 player = Player.Player(
@@ -122,7 +111,7 @@ score = Score.Score(
     pygame.font.SysFont(None, 50), 0, ""
 )
 
-Ghosts = [ghost1, ghost2, ghost3, ghost4, ghost_bonus]
+Ghosts = [ghost1, ghost2, ghost3, ghost4]
 
 while running == True:                   # Tant que le jeu tourne, la variable est vrai
     for event in pygame.event.get():
@@ -141,18 +130,52 @@ while running == True:                   # Tant que le jeu tourne, la variable e
     if keys[pygame.K_d]:
         player.move_right()
 
-    for ghost in Ghosts:
+    for ghost in Ghosts:                                                # Fonctionnement du fantôme
         ghost.draw()
         ghost.move()
         ghost.shoot()
-
-    ghost_bonus.changeSpeed(randint(0,3)**3)
 
     for ghost in Ghosts:
         bullet_touching_ghost = CollisionManager.is_ghost_touched(ghost, bullet_manager)
         if bullet_touching_ghost:
             bullet_manager.delete_player_bullet(bullet_touching_ghost)
             score.add_score_normal()
+
+    #if bullet_touching_bonus:
+     #   bullet_manager.delete_player_bullet(bullet_touching_bonus)
+      #  bonus_manager.delete_bonus()
+       # score.add_score_bonus()
+    if timer >= 10:
+        if not bonus:
+            print("added bonus")
+
+            bonus = Bonus.Bonus(
+                360,
+                200,
+                "white",
+                (30, 30),
+                screen,
+                7,
+                pygame.Vector2(190, 200),
+                pygame.Vector2(720, 200),
+                0
+            )
+
+            bonus_manager.add_new_bonus(bonus)
+
+
+    if bonus:
+        bullet_touching_bonus = CollisionManager.is_bonus_touched(bonus, bullet_manager)
+        bonus_manager.move_and_draw_bonus()
+        bonus.change_speed(randint(1, 5) ** 2)
+
+    if bullet_touching_bonus:
+        print("bullet touched")
+        score.add_score_bonus()
+        bonus_manager.delete_bonus()
+        bonus = None
+        timer = 0
+        bullet_touching_bonus = False
 
     player.draw()
     score.show_score()
@@ -163,11 +186,17 @@ while running == True:                   # Tant que le jeu tourne, la variable e
     if CollisionManager.is_player_touched(player, bullet_manager):      # Collision des tirs
         running = False
 
-    for bullet in bullet_manager.ghost_bullets:
+    for bullet in bullet_manager.ghost_bullets:                         # Tirs hors-écrans supprimés
         if bullet.position.y >= screen_height:
             bullet_manager.delete_ghost_bullet(bullet)
 
+    for bullet in bullet_manager.player_bullets:
+        if bullet.position.y <= 0:
+            bullet_manager.delete_player_bullet(bullet)
+
+
     pygame.display.flip()               # Rafraîchissement de l'image
+    timer += dt
     dt = clock.tick(60) / 1000          # Vitesse de rafraîchissement
 
 pygame.quit()
