@@ -1,6 +1,5 @@
 from random import randint
 import pygame                                                       # Imports de fichiers
-
 import BonusManager
 import Player
 import Ghost
@@ -28,7 +27,7 @@ ghost1 = Ghost.Ghost(
     130,
     100,
     "right",
-    "deeppink",
+    "rose",
     (50, 60),
     screen,
     3,
@@ -45,7 +44,7 @@ ghost2 = Ghost.Ghost(
     550,
     100,
     "right",
-    "red",
+    "rouge",
     (50, 60),
     screen,
     3,
@@ -62,7 +61,7 @@ ghost3 = Ghost.Ghost(
     780,
     290,
     "left",
-    "deepskyblue",
+    "cyan",
     (50, 60),
     screen,
     3,
@@ -118,7 +117,7 @@ while running == True:                   # Tant que le jeu tourne, la variable e
         if event.type == pygame.QUIT:    # Si l'écran d'affichage est supprimé, arrêt du jeu, car variable devient fausse
             running = False
 
-    screen.fill("darkblue")
+    screen.fill("black")
 
     keys = pygame.key.get_pressed()                                     # Déplacement du joueur
     if keys[pygame.K_w]:
@@ -141,10 +140,6 @@ while running == True:                   # Tant que le jeu tourne, la variable e
             bullet_manager.delete_player_bullet(bullet_touching_ghost)
             score.add_score_normal()
 
-    #if bullet_touching_bonus:
-     #   bullet_manager.delete_player_bullet(bullet_touching_bonus)
-      #  bonus_manager.delete_bonus()
-       # score.add_score_bonus()
     if timer >= 10:
         if not bonus:
             print("added bonus")

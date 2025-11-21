@@ -279,7 +279,20 @@ Cette ligne vérifie si le compteur a atteint un multiple exact de l’intervall
 
 * Ajout de la classe BonusManager, même principe que le BulletManager mais pour l'apparition et disparition entre autres 
 du bonus.
-* 
+
+#### 20 Novembre : 
+
+* J'ai vérifié les collisions entre bonus-tir joueur : Je pensais qu'il y avait un problème, mais c'était seuelement 
+la vitesse de déplacement du bonus et son taux de rafraichissement qui était au centre du problème de perception.
+
+#### 21 Novembre : 
+
+* J'ai rajouté les graphismes à partir d'images format "png" pour les insérer sur les rectangles formés. 
+À cause de cette insertion, j'ai été contraint de changer la façon d'afficher les formes à l'écran pour pouvoir 
+plus simplement rajouter l'image insérée au rectangle nouvellement crée.
+* J'ai vérifié que tout était en ordre en termes de jouabilité. Il m'aurait fallu plus de temps afin d'insérer d'autres fonctionnalités tel qu'un écran d'acceuil ou même des sons au 
+jeu.
+* Fin
 
 # Planification
 _______________
@@ -323,8 +336,8 @@ _______________
 * Corriger la collision du tir joueur sur fantôme FAIT
 * Ajouter le tir du joueur avec nouvelle limite FAIT
 * Créer un bonus qui se situe sur l’écran entre les fantômes FAIT
-* Gérer la collision entre Pac-Man et le bonus 
-* Gérer l'apparition et la disparition du bonus 
-* Ajouter graphismes sur objets
-* Assurer le bon fonctionnement global du jeu
+* Gérer la collision entre Pac-Man et le bonus FAIT
+* Gérer l'apparition et la disparition du bonus FAIT
+* Ajouter graphismes sur objets FAIT
+* Assurer le bon fonctionnement global du jeu FAIT
 * Ajouter les commentaires et indications et remettre au propre

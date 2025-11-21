@@ -1,4 +1,6 @@
 import pygame
+from ChargementImages import charger_image
+
 class Ghost:
 
     def __init__(
@@ -31,13 +33,15 @@ class Ghost:
         self.bullet_Manager = bullet_Manager
         self.counter = counter
         self.interval = interval
+        self.image = charger_image(color + ".png")
+        largeur, hauteur = self.image.get_size()
+        self.imageDouble = pygame.transform.smoothscale(self.image, (largeur * 2, hauteur * 2))
+
+
 
     def draw(self):
-        pygame.draw.rect(
-            self.screen,
-            self.color,
-            (self.position, self.dimension)
-        )
+        rectangle= self.imageDouble.get_rect(center=(int(self.position.x), int(self.position.y)))
+        self.screen.blit(self.imageDouble, rectangle)
         self.counter += 1
 
     def move(self):                                 # Déplacement en boucle des fantômes dans le sens horaire

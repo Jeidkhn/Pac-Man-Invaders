@@ -1,4 +1,5 @@
 import pygame
+from ChargementImages import charger_image
 class Player:
 
     def __init__(
@@ -21,10 +22,15 @@ class Player:
         self.bullet_Manager = bullet_Manager
         self.counter = counter
         self.interval = interval
+        self.image = charger_image("pacman.png")
+        largeur, hauteur = self.image.get_size()
+        self.imageDouble = pygame.transform.smoothscale(self.image, (largeur * 2, hauteur * 2))
+
 
 
     def draw(self):
-        pygame.draw.circle(self.screen, self.color, self.position, self.width)
+        rectangle= self.imageDouble.get_rect(center=(int(self.position.x), int(self.position.y)))
+        self.screen.blit(self.imageDouble, rectangle)
         self.counter += 1
 
     def move_left(self):

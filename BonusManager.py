@@ -20,5 +20,4 @@ class BonusManager:
             self.bonus.draw()
 
     def delete_bonus(self):
-        print("delete_bonus")
         self.bonus = None

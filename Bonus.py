@@ -1,5 +1,6 @@
 import pygame
 from random import randint
+from ChargementImages import charger_image
 
 class Bonus:
 
@@ -24,13 +25,12 @@ class Bonus:
         self.limit_left = limit_left
         self.limit_right = limit_right
         self.counter = counter
+        self.image = charger_image("bonus.png")
 
     def draw(self):
-        pygame.draw.rect(
-            self.screen,
-            self.color,
-            (self.position, self.dimension)
-        )
+        rectangle= self.image.get_rect(center=(int(self.position.x), int(self.position.y)))
+        self.screen.blit(self.image, rectangle)
+
     def move(self):
         if self.direction == 0:
             self.position.x -= self.speed
