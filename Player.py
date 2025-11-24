@@ -27,7 +27,6 @@ class Player:
         self.imageDouble = pygame.transform.smoothscale(self.image, (largeur * 2, hauteur * 2))
 
 
-
     def draw(self):
         rectangle= self.imageDouble.get_rect(center=(int(self.position.x), int(self.position.y)))
         self.screen.blit(self.imageDouble, rectangle)

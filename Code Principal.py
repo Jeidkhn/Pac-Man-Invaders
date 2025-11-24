@@ -1,5 +1,5 @@
-from random import randint
-import pygame                                                       # Imports de fichiers
+from random import randint                                          # Imports de fichiers
+import pygame
 import BonusManager
 import Player
 import Ghost
@@ -11,9 +11,9 @@ import Bonus
 pygame.init()
 screen_height = 720
 screen_width = 960
-screen = pygame.display.set_mode((screen_width, screen_height))    # Taille d'écran rétro
-clock = pygame.time.Clock()     # Le temps du jeu
-dt = 0.0                                          # Variables
+screen = pygame.display.set_mode((screen_width, screen_height))
+clock = pygame.time.Clock()
+dt = 0.0
 running = True
 timer = 0
 
@@ -23,7 +23,7 @@ bonus_manager = BonusManager.BonusManager(screen)
 bonus = None
 bullet_touching_bonus = None
 
-ghost1 = Ghost.Ghost(
+ghost1 = Ghost.Ghost(                                      # Constructeur d'objets
     130,
     100,
     "right",
@@ -107,7 +107,9 @@ score = Score.Score(
     screen,
     30,
     30,
-    pygame.font.SysFont(None, 50), 0, ""
+    pygame.font.SysFont(None, 50),
+    0,
+    ""
 )
 
 Ghosts = [ghost1, ghost2, ghost3, ghost4]
@@ -117,9 +119,10 @@ while running == True:                   # Tant que le jeu tourne, la variable e
         if event.type == pygame.QUIT:    # Si l'écran d'affichage est supprimé, arrêt du jeu, car variable devient fausse
             running = False
 
-    screen.fill("black")
+    screen.fill("black")                                                # Affichage du score et de l'écran
+    score.show_score()
 
-    keys = pygame.key.get_pressed()                                     # Déplacement du joueur
+    keys = pygame.key.get_pressed()                                     # Déplacement et affichage du joueur
     if keys[pygame.K_w]:
         player.shoot()
 
@@ -129,35 +132,34 @@ while running == True:                   # Tant que le jeu tourne, la variable e
     if keys[pygame.K_d]:
         player.move_right()
 
+    player.draw()
+
     for ghost in Ghosts:                                                # Fonctionnement du fantôme
         ghost.draw()
         ghost.move()
         ghost.shoot()
 
-    for ghost in Ghosts:
+    for ghost in Ghosts:                                                # Collision des tirs du joueur sur fantôme
         bullet_touching_ghost = CollisionManager.is_ghost_touched(ghost, bullet_manager)
         if bullet_touching_ghost:
             bullet_manager.delete_player_bullet(bullet_touching_ghost)
             score.add_score_normal()
 
-    if timer >= 10:
-        if not bonus:
-            print("added bonus")
+    if timer >= 10 and not bonus:                                       # Après 10 secondes, s'il n'y pas de bonus,
+                                                                        # rajouter un bonus
+        bonus = Bonus.Bonus(
+            360,
+            200,
+            "white",
+            (30, 30),
+            screen,
+            7,
+            pygame.Vector2(190, 200),
+            pygame.Vector2(720, 200),
+            0
+        )
 
-            bonus = Bonus.Bonus(
-                360,
-                200,
-                "white",
-                (30, 30),
-                screen,
-                7,
-                pygame.Vector2(190, 200),
-                pygame.Vector2(720, 200),
-                0
-            )
-
-            bonus_manager.add_new_bonus(bonus)
-
+        bonus_manager.add_new_bonus(bonus)
 
     if bonus:
         bullet_touching_bonus = CollisionManager.is_bonus_touched(bonus, bullet_manager)
@@ -165,23 +167,19 @@ while running == True:                   # Tant que le jeu tourne, la variable e
         bonus.change_speed(randint(1, 5) ** 2)
 
     if bullet_touching_bonus:
-        print("bullet touched")
         score.add_score_bonus()
         bonus_manager.delete_bonus()
         bonus = None
         timer = 0
         bullet_touching_bonus = False
 
-    player.draw()
-    score.show_score()
-
-    bullet_manager.move_and_draw_ghost_bullet()                         # Création des nouveaux tirs
+    bullet_manager.move_and_draw_ghost_bullet()                                            # Création des nouveaux tirs
     bullet_manager.move_and_draw_player_bullet()
 
-    if CollisionManager.is_player_touched(player, bullet_manager):      # Collision des tirs
-        running = False
+    if CollisionManager.is_player_touched(player, bullet_manager):      # Collision des tirs fantômes
+        running = False                                                                    # sur le joueur
 
-    for bullet in bullet_manager.ghost_bullets:                         # Tirs hors-écrans supprimés
+    for bullet in bullet_manager.ghost_bullets:                                            # Tirs hors-écrans supprimés
         if bullet.position.y >= screen_height:
             bullet_manager.delete_ghost_bullet(bullet)
 

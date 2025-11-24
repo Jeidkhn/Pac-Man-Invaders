@@ -21,5 +21,3 @@ class Bullet:
     def draw(self):
         rectangle= self.image.get_rect(center=(int(self.position.x), int(self.position.y)))
         self.screen.blit(self.image, rectangle)
-
-        # pygame.draw.rect(self.screen, self.color, (self.position, self.dimension))

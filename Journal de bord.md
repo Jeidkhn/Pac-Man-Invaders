@@ -292,7 +292,11 @@ la vitesse de déplacement du bonus et son taux de rafraichissement qui était a
 plus simplement rajouter l'image insérée au rectangle nouvellement crée.
 * J'ai vérifié que tout était en ordre en termes de jouabilité. Il m'aurait fallu plus de temps afin d'insérer d'autres fonctionnalités tel qu'un écran d'acceuil ou même des sons au 
 jeu.
-* Fin
+
+#### 22 Novembre :
+
+* Mise aux propres et ajouts de commentaires, le code reste inchangé.
+* Fin du projet.
 
 # Planification
 _______________
@@ -340,4 +344,4 @@ _______________
 * Gérer l'apparition et la disparition du bonus FAIT
 * Ajouter graphismes sur objets FAIT
 * Assurer le bon fonctionnement global du jeu FAIT
-* Ajouter les commentaires et indications et remettre au propre
+* Ajouter les commentaires et indications et remettre au propre FAIT

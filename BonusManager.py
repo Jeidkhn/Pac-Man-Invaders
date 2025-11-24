@@ -7,11 +7,17 @@ class BonusManager:
         self.bonus = None
 
     def add_new_bonus (self, bonus):
-        new_bonus = Bonus.Bonus(bonus.position.x, bonus.position.y,
-                                     "white", (30, 30), self.screen, 7, pygame.Vector2(190, 200),
-                                pygame.Vector2(720, 200),
-    0
-                                )
+        new_bonus = Bonus.Bonus(
+            bonus.position.x,
+            bonus.position.y,
+            "white",
+            (30, 30),
+            self.screen,
+            7,
+            pygame.Vector2(190, 200),
+            pygame.Vector2(720, 200),
+            0
+        )
         self.bonus = new_bonus
 
     def move_and_draw_bonus(self):
